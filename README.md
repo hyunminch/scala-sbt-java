@@ -1,2 +1,2 @@
-# scala-sbt-java8
-Docker image with Scala, SBT, and Java 8
+# scala-sbt-java
+Docker image with Scala, SBT, and Java
