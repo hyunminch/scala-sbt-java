@@ -16,10 +16,15 @@ RUN update-ca-certificates -f
 ENV SCALA_VERSION 2.12.1
 ENV SBT_VERSION 0.13.15
 
-# install sbt
-RUN wget https://dl.bintray.com/sbt/debian/sbt-$SBT_VERSION.deb
-RUN dpkg -i sbt-$SBT_VERSION.deb
-
 # install scala
 RUN wget https://downloads.typesafe.com/scala/$SCALA_VERSION/scala-$SCALA_VERSION.deb
-RUN dpkg -i scala-$SCALA_VERSION.deb
+RUN dpkg -i scala-$SCALA_VERSION.deb && \
+    rm scala-$SCALA_VERSION.db
+
+# install sbt
+RUN wget https://dl.bintray.com/sbt/debian/sbt-$SBT_VERSION.deb
+RUN dpkg -i sbt-$SBT_VERSION.deb && \
+    rm sbt-$SBT_VERSION.db && \
+    sbt sbtVersion && \
+    rm -rf target/
+
