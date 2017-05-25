@@ -28,3 +28,9 @@ RUN dpkg -i sbt-$SBT_VERSION.deb && \
     sbt sbtVersion && \
     rm -rf target/
 
+# sbt warmup
+ADD . /var/www
+WORKDIR /var/www/sbt-warmup
+RUN sbt run
+RUN rm -rf ./*
+
